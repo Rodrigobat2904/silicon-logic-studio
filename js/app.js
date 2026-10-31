@@ -8,6 +8,9 @@ class SiliconLogicApp {
     this.initDOM();
     this.attachEvents();
     this.loadLab(0);
+    this.engine.applySolution();
+    this.engine.inputs = { A: 1, B: 1 };
+    this.refreshLabUI();
     this.renderAluSection();
   }
 
@@ -73,38 +76,40 @@ class SiliconLogicApp {
   }
 
   wireColor(bit) {
-    return bit ? '#38bdf8' : '#334155';
+    return bit ? '#fbbf24' : '#145a3e';
   }
 
   drawPinBox(x, y, name, val) {
-    const bg = val ? 'rgba(56, 189, 248, 0.2)' : '#1e293b';
-    const stroke = val ? '#38bdf8' : '#475569';
+    const bg = val ? '#b45309' : '#031710';
+    const stroke = val ? '#fbbf24' : '#228b62';
     return `
       <g data-input-pin="${name}" transform="translate(${x}, ${y})" style="cursor: pointer;">
-        <rect x="0" y="0" width="76" height="36" rx="6" fill="${bg}" stroke="${stroke}" stroke-width="1.8" />
-        <text x="38" y="23" text-anchor="middle" fill="#f8fafc" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">${name} = ${val}</text>
+        <rect x="0" y="0" width="76" height="36" rx="3" fill="${bg}" stroke="${stroke}" stroke-width="2" />
+        <circle cx="10" cy="18" r="4" fill="#fbbf24" />
+        <text x="44" y="23" text-anchor="middle" fill="#ffffff" font-family="Space Mono, monospace" font-size="12" font-weight="700">${name}=${val}</text>
       </g>
     `;
   }
 
   drawOutBox(x, y, name, val) {
-    const bg = val ? 'rgba(16, 185, 129, 0.22)' : '#1e293b';
-    const stroke = val ? '#10b981' : '#475569';
+    const bg = val ? 'rgba(251, 191, 36, 0.22)' : '#031710';
+    const stroke = val ? '#fbbf24' : '#228b62';
     return `
       <g transform="translate(${x}, ${y})">
-        <rect x="0" y="0" width="96" height="38" rx="6" fill="${bg}" stroke="${stroke}" stroke-width="1.8" />
-        <text x="48" y="24" text-anchor="middle" fill="${val ? '#34d399' : '#cbd5e1'}" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">${name}: ${val}</text>
+        <rect x="0" y="0" width="96" height="38" rx="3" fill="${bg}" stroke="${stroke}" stroke-width="2" />
+        <text x="48" y="24" text-anchor="middle" fill="${val ? '#fbbf24' : '#94a3b8'}" font-family="Space Mono, monospace" font-size="12" font-weight="700">${name}: ${val}</text>
       </g>
     `;
   }
 
   drawGateBox(x, y, gateId, gateType, outBit) {
-    const stroke = outBit ? '#38bdf8' : '#818cf8';
+    const stroke = outBit ? '#fbbf24' : '#e2e8f0';
     return `
       <g data-gate-id="${gateId}" transform="translate(${x}, ${y})" style="cursor: pointer;">
-        <rect x="0" y="0" width="110" height="48" rx="8" fill="#1e293b" stroke="${stroke}" stroke-width="2" />
-        <text x="55" y="19" text-anchor="middle" fill="#a5b4fc" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700">${gateId} (Click ↻)</text>
-        <text x="55" y="37" text-anchor="middle" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="14" font-weight="800">${gateType}</text>
+        <rect x="0" y="0" width="110" height="48" rx="3" fill="#18181b" stroke="${stroke}" stroke-width="2" />
+        <circle cx="8" cy="24" r="4" fill="#27272a" stroke="#71717a" stroke-width="1" />
+        <text x="58" y="18" text-anchor="middle" fill="#fbbf24" font-family="Space Mono, monospace" font-size="9" font-weight="700">IC-${gateId} [SWAP]</text>
+        <text x="58" y="37" text-anchor="middle" fill="#ffffff" font-family="Space Mono, monospace" font-size="14" font-weight="700">${gateType}</text>
       </g>
     `;
   }
@@ -269,9 +274,9 @@ class SiliconLogicApp {
       });
     });
 
-    // Render 7-Segment SVG
+    // Render 7-Segment SVG in Classic Red LED
     const s = alu.segments;
-    const segCol = (on) => (on ? '#10b981' : '#1e293b');
+    const segCol = (on) => (on ? '#ff2a2a' : '#261215');
     this.sevenSegSvg.setAttribute('viewBox', '0 0 100 140');
     this.sevenSegSvg.innerHTML = `
       <!-- a --> <rect x="24" y="12" width="52" height="10" rx="5" fill="${segCol(s[0])}" />

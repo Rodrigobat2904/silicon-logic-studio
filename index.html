@@ -3,92 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiliconLogic — Digital IC Gate Synthesis, Truth Table Verifier &amp; 4-Bit ALU Studio</title>
+  <title>SN74HC-EVAL // Green PCB Digital IC &amp; 4-Bit ALU Hardware Trainer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=20261101_01" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=20261101_02" />
 </head>
 <body>
 
-  <header class="top-bar">
-    <div class="brand-group">
-      <div class="brand-icon">ALU</div>
-      <div class="brand-title">
-        <h1>
-          SiliconLogic IC &amp; ALU Architecture Studio
-          <span class="badge-chip">CMOS GATE SYNTHESIS · 4-BIT ALU · 7-SEG</span>
-        </h1>
-        <p>Interactive Gate-Level Combinational Logic Workbench, Exhaustive Truth Table Verifier &amp; 4-Bit Binary ALU</p>
+  <!-- GOLD PCB EDGE-FINGER HEADER -->
+  <div class="pcb-gold-fingers"></div>
+
+  <header class="pcb-header">
+    <div class="pcb-brand">
+      <div class="ic-dip-chip">
+        <span>74HCxx</span>
+        <small>CMOS 5V</small>
+      </div>
+      <div>
+        <div class="silkscreen-tag">FR-4 MULTILAYER LOGIC TRAINER // REV 4.2A · VCC = +5.0V DC</div>
+        <h1>SILICONLOGIC — PCB GATE SYNTHESIS &amp; 4-BIT ALU HARDWARE BENCH</h1>
       </div>
     </div>
 
-    <div class="top-actions">
-      <select id="lab-select" class="select-dark">
-        <option value="0">IC Lab 01: 1-Bit Binary Half-Adder (SUM &amp; CARRY)</option>
-        <option value="1">IC Lab 02: 1-Bit Full-Adder with Carry-In (A + B + Cin)</option>
-        <option value="2">IC Lab 03: 2-to-1 Digital Multiplexer (Data Selector)</option>
+    <div class="pcb-toolbar">
+      <label class="silkscreen-lbl" for="lab-select">SOCKET IC:</label>
+      <select id="lab-select" class="pcb-select">
+        <option value="0">U1: SN74HC86 — 1-Bit Binary Half-Adder (SUM &amp; CARRY)</option>
+        <option value="1">U2: SN74HC283 — 1-Bit Full-Adder with Carry-In (A+B+Cin)</option>
+        <option value="2">U3: SN74HC157 — 2-to-1 Digital Multiplexer (Data Selector)</option>
       </select>
-      <button id="btn-autosolve" class="btn btn-solve">⚡ Auto-Solve Gate Logic</button>
-      <button id="btn-reset-lab" class="btn">↺ Reset Lab</button>
+      <button id="btn-autosolve" class="pcb-btn pcb-btn-gold">⚡ AUTO-ROUTE SOLUTION JUMPER</button>
+      <button id="btn-reset-lab" class="pcb-btn">↺ RESET SOCKET</button>
     </div>
   </header>
 
-  <main class="main-grid">
+  <main class="trainer-workbench">
 
-    <!-- LEFT COLUMN: Interactive Gate Schematic & Spec -->
-    <div class="col-stack">
+    <!-- TOP ROW: LEFT = GREEN FR-4 PCB TRACE BOARD | RIGHT = CREAM TI DATASHEET TRUTH TABLE -->
+    <div class="top-bench-grid">
 
-      <section class="panel">
-        <div class="panel-header">
-          <span id="lab-title" class="panel-title">IC Lab 01: 1-Bit Binary Half-Adder</span>
-          <span id="verdict-badge" style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700;"></span>
+      <!-- GREEN FR-4 PCB SOLDER-MASK BOARD -->
+      <section class="pcb-board-card">
+        <span class="pcb-hole hole-tl"></span>
+        <span class="pcb-hole hole-tr"></span>
+        <span class="pcb-hole hole-bl"></span>
+        <span class="pcb-hole hole-br"></span>
+
+        <div class="pcb-silkscreen-head">
+          <span id="lab-title" class="silk-title">IC Lab 01: 1-Bit Binary Half-Adder</span>
+          <span id="verdict-badge" class="silk-verdict"></span>
         </div>
-        <div class="panel-body">
-          <p id="lab-desc" style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 12px;"></p>
-          <div class="schematic-box">
-            <svg id="schematic-svg"></svg>
-          </div>
-          <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 8px; display: flex; justify-content: space-between;">
-            <span>👆 Click Input Pads (A, B) to toggle 0/1 | Click Gate Blocks (G1, G2...) to cycle gate type</span>
-            <span style="color: #38bdf8;">Cyan = Logic 1 (HIGH)</span>
-          </div>
+
+        <p id="lab-desc" class="silk-desc"></p>
+
+        <div class="pcb-trace-plane">
+          <svg id="schematic-svg"></svg>
+        </div>
+
+        <div class="pcb-legend-strip">
+          <span>[SW-IN] Click Gold Input Pads (A, B) to Toggle +5V/0V | [IC-GATE] Click DIP IC Sockets (G1..G5) to Swap Gate Chip</span>
+          <span class="gold-trace-key">━━ GOLD TRACE = +5.0V LOGIC HIGH (1)</span>
         </div>
       </section>
 
-      <!-- 4-Bit Binary ALU & 7-Segment Hex Decoder -->
-      <section class="panel">
-        <div class="panel-header">
-          <span class="panel-title">🧮 Interactive 4-Bit Arithmetic Logic Unit (ALU) &amp; 7-Segment Hex Decoder</span>
-          <span id="alu-flags-txt" style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #34d399;"></span>
-        </div>
-        <div class="panel-body">
-          <div class="alu-grid">
-            <div id="alu-controls"></div>
-            <div class="seven-seg-card">
-              <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; font-family: 'JetBrains Mono', monospace;">HEX OUTPUT</div>
-              <svg id="seven-seg-svg" style="width: 75px; height: 105px; margin: 0 auto; display: block;"></svg>
-            </div>
+      <!-- CREAM PAPER TI-STYLE DATASHEET TRUTH TABLE VERIFIER -->
+      <aside class="datasheet-paper">
+        <div class="datasheet-header">
+          <div>
+            <div class="ds-code">TEXAS INSTRUMENTS // SN74HC-SERIES SPECIFICATION</div>
+            <div class="ds-title">EXHAUSTIVE 2ᴺ TRUTH-TABLE SILICON VERIFIER</div>
           </div>
+          <div class="ds-stamp">QA TEST</div>
         </div>
-      </section>
+        <div class="datasheet-body" id="truth-table-container"></div>
+      </aside>
 
     </div>
 
-    <!-- RIGHT COLUMN: Exhaustive Truth Table Auto-Grader -->
-    <aside class="col-stack">
-      <section class="panel" style="flex: 1;">
-        <div class="panel-header">
-          <span class="panel-title">📋 Exhaustive 2ᴺ Truth Table Verification Matrix</span>
-          <span style="font-size: 0.72rem; color: var(--text-muted);">Real-Time Combinational Grader</span>
+    <!-- BOTTOM FULL-WIDTH HARDWARE MODULE: SN74HC181 4-BIT BINARY ALU & RED 7-SEGMENT DISPLAY -->
+    <section class="alu-trainer-deck">
+      <div class="alu-deck-head">
+        <div>
+          <span class="alu-part-tag">U4 // SN74HC181N</span>
+          <span class="alu-deck-title">4-BIT ARITHMETIC LOGIC UNIT (ALU) DIP-SWITCH TRAINER &amp; BCD/HEX 7-SEGMENT DECODER</span>
         </div>
-        <div class="panel-body" id="truth-table-container"></div>
-      </section>
-    </aside>
+        <span id="alu-flags-txt" class="alu-flags-pill"></span>
+      </div>
+
+      <div class="alu-deck-body">
+        <div id="alu-controls" class="alu-dip-console"></div>
+
+        <div class="led-housing">
+          <div class="led-bezel-label">7-SEG HEX DISPLAY (F3..F0)</div>
+          <div class="led-window">
+            <svg id="seven-seg-svg"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <script src="js/engine/logic.js?v=20261101_01"></script>
-  <script src="js/app.js?v=20261101_01"></script>
+  <script src="js/engine/logic.js?v=20261101_02"></script>
+  <script src="js/app.js?v=20261101_02"></script>
 </body>
 </html>
