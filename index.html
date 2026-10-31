@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SiliconLogic — Digital IC Gate Synthesis, Truth Table Verifier &amp; 4-Bit ALU Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=20261101_01" />
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="brand-group">
+      <div class="brand-icon">ALU</div>
+      <div class="brand-title">
+        <h1>
+          SiliconLogic IC &amp; ALU Architecture Studio
+          <span class="badge-chip">CMOS GATE SYNTHESIS · 4-BIT ALU · 7-SEG</span>
+        </h1>
+        <p>Interactive Gate-Level Combinational Logic Workbench, Exhaustive Truth Table Verifier &amp; 4-Bit Binary ALU</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <select id="lab-select" class="select-dark">
+        <option value="0">IC Lab 01: 1-Bit Binary Half-Adder (SUM &amp; CARRY)</option>
+        <option value="1">IC Lab 02: 1-Bit Full-Adder with Carry-In (A + B + Cin)</option>
+        <option value="2">IC Lab 03: 2-to-1 Digital Multiplexer (Data Selector)</option>
+      </select>
+      <button id="btn-autosolve" class="btn btn-solve">⚡ Auto-Solve Gate Logic</button>
+      <button id="btn-reset-lab" class="btn">↺ Reset Lab</button>
+    </div>
+  </header>
+
+  <main class="main-grid">
+
+    <!-- LEFT COLUMN: Interactive Gate Schematic & Spec -->
+    <div class="col-stack">
+
+      <section class="panel">
+        <div class="panel-header">
+          <span id="lab-title" class="panel-title">IC Lab 01: 1-Bit Binary Half-Adder</span>
+          <span id="verdict-badge" style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700;"></span>
+        </div>
+        <div class="panel-body">
+          <p id="lab-desc" style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 12px;"></p>
+          <div class="schematic-box">
+            <svg id="schematic-svg"></svg>
+          </div>
+          <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 8px; display: flex; justify-content: space-between;">
+            <span>👆 Click Input Pads (A, B) to toggle 0/1 | Click Gate Blocks (G1, G2...) to cycle gate type</span>
+            <span style="color: #38bdf8;">Cyan = Logic 1 (HIGH)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4-Bit Binary ALU & 7-Segment Hex Decoder -->
+      <section class="panel">
+        <div class="panel-header">
+          <span class="panel-title">🧮 Interactive 4-Bit Arithmetic Logic Unit (ALU) &amp; 7-Segment Hex Decoder</span>
+          <span id="alu-flags-txt" style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #34d399;"></span>
+        </div>
+        <div class="panel-body">
+          <div class="alu-grid">
+            <div id="alu-controls"></div>
+            <div class="seven-seg-card">
+              <div style="font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; font-family: 'JetBrains Mono', monospace;">HEX OUTPUT</div>
+              <svg id="seven-seg-svg" style="width: 75px; height: 105px; margin: 0 auto; display: block;"></svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT COLUMN: Exhaustive Truth Table Auto-Grader -->
+    <aside class="col-stack">
+      <section class="panel" style="flex: 1;">
+        <div class="panel-header">
+          <span class="panel-title">📋 Exhaustive 2ᴺ Truth Table Verification Matrix</span>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">Real-Time Combinational Grader</span>
+        </div>
+        <div class="panel-body" id="truth-table-container"></div>
+      </section>
+    </aside>
+
+  </main>
+
+  <script src="js/engine/logic.js?v=20261101_01"></script>
+  <script src="js/app.js?v=20261101_01"></script>
+</body>
+</html>
