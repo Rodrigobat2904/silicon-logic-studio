@@ -76,40 +76,40 @@ class SiliconLogicApp {
   }
 
   wireColor(bit) {
-    return bit ? '#fbbf24' : '#145a3e';
+    return bit ? '#059669' : '#d6d3d1';
   }
 
   drawPinBox(x, y, name, val) {
-    const bg = val ? '#b45309' : '#031710';
-    const stroke = val ? '#fbbf24' : '#228b62';
+    const bg = val ? '#1c1917' : '#ffffff';
+    const stroke = val ? '#1c1917' : '#d6d3d1';
+    const txt = val ? '#ffffff' : '#1c1917';
     return `
       <g data-input-pin="${name}" transform="translate(${x}, ${y})" style="cursor: pointer;">
-        <rect x="0" y="0" width="76" height="36" rx="3" fill="${bg}" stroke="${stroke}" stroke-width="2" />
-        <circle cx="10" cy="18" r="4" fill="#fbbf24" />
-        <text x="44" y="23" text-anchor="middle" fill="#ffffff" font-family="Space Mono, monospace" font-size="12" font-weight="700">${name}=${val}</text>
+        <rect x="0" y="0" width="76" height="36" rx="6" fill="${bg}" stroke="${stroke}" stroke-width="1.5" />
+        <text x="38" y="23" text-anchor="middle" fill="${txt}" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">${name} = ${val}</text>
       </g>
     `;
   }
 
   drawOutBox(x, y, name, val) {
-    const bg = val ? 'rgba(251, 191, 36, 0.22)' : '#031710';
-    const stroke = val ? '#fbbf24' : '#228b62';
+    const bg = val ? '#ecfdf5' : '#ffffff';
+    const stroke = val ? '#059669' : '#d6d3d1';
+    const txt = val ? '#059669' : '#57534e';
     return `
       <g transform="translate(${x}, ${y})">
-        <rect x="0" y="0" width="96" height="38" rx="3" fill="${bg}" stroke="${stroke}" stroke-width="2" />
-        <text x="48" y="24" text-anchor="middle" fill="${val ? '#fbbf24' : '#94a3b8'}" font-family="Space Mono, monospace" font-size="12" font-weight="700">${name}: ${val}</text>
+        <rect x="0" y="0" width="96" height="38" rx="6" fill="${bg}" stroke="${stroke}" stroke-width="1.5" />
+        <text x="48" y="24" text-anchor="middle" fill="${txt}" font-family="JetBrains Mono, monospace" font-size="12" font-weight="700">${name}: ${val}</text>
       </g>
     `;
   }
 
   drawGateBox(x, y, gateId, gateType, outBit) {
-    const stroke = outBit ? '#fbbf24' : '#e2e8f0';
+    const stroke = outBit ? '#059669' : '#a8a29e';
     return `
       <g data-gate-id="${gateId}" transform="translate(${x}, ${y})" style="cursor: pointer;">
-        <rect x="0" y="0" width="110" height="48" rx="3" fill="#18181b" stroke="${stroke}" stroke-width="2" />
-        <circle cx="8" cy="24" r="4" fill="#27272a" stroke="#71717a" stroke-width="1" />
-        <text x="58" y="18" text-anchor="middle" fill="#fbbf24" font-family="Space Mono, monospace" font-size="9" font-weight="700">IC-${gateId} [SWAP]</text>
-        <text x="58" y="37" text-anchor="middle" fill="#ffffff" font-family="Space Mono, monospace" font-size="14" font-weight="700">${gateType}</text>
+        <rect x="0" y="0" width="110" height="48" rx="8" fill="#ffffff" stroke="${stroke}" stroke-width="1.8" />
+        <text x="55" y="18" text-anchor="middle" fill="#78716c" font-family="Inter, sans-serif" font-size="9.5" font-weight="600">${gateId} · Click to Cycle</text>
+        <text x="55" y="37" text-anchor="middle" fill="#1c1917" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">${gateType}</text>
       </g>
     `;
   }
@@ -274,9 +274,9 @@ class SiliconLogicApp {
       });
     });
 
-    // Render 7-Segment SVG in Classic Red LED
+    // Render 7-Segment SVG in Minimalist Charcoal/Emerald
     const s = alu.segments;
-    const segCol = (on) => (on ? '#ff2a2a' : '#261215');
+    const segCol = (on) => (on ? '#1c1917' : '#e7e5e4');
     this.sevenSegSvg.setAttribute('viewBox', '0 0 100 140');
     this.sevenSegSvg.innerHTML = `
       <!-- a --> <rect x="24" y="12" width="52" height="10" rx="5" fill="${segCol(s[0])}" />

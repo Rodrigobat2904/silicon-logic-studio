@@ -1,21 +1,20 @@
 /**
- * SiliconLogic — Authentic FR-4 Green PCB Solder-Mask & Gold Copper Trace + Cream TI Datasheet Theme
- * Radically distinct hardware trainer aesthetic: Emerald PCB (#032217), Gold Pads (#fbbf24), Cream Vellum Datasheet (#f5f0e1)
+ * SiliconLogic — Modern Minimalist CAD & Dieter Rams Inspired Workbench
+ * Warm Stone (#f5f5f4), Pure White Cards (#ffffff), Charcoal (#1c1917) & Emerald (#059669)
  */
 
 :root {
-  --pcb-dark: #021a11;
-  --pcb-green: #04281b;
-  --pcb-trace-low: #0b4630;
-  --pcb-border: #125c40;
-  --gold-pad: #f59e0b;
-  --gold-bright: #fbbf24;
-  --silk-white: #f1f5f9;
-  --silk-dim: #94a3b8;
+  --bg-stone: #f5f5f4;
+  --bg-card: #ffffff;
+  --border-stone: #e7e5e4;
 
-  --paper-bg: #f6f1e3;
-  --paper-ink: #18181b;
-  --paper-rule: #d6ceb8;
+  --text-main: #1c1917;
+  --text-sub: #57534e;
+  --text-muted: #78716c;
+
+  --emerald: #059669;
+  --amber: #d97706;
+  --rose: #e11d48;
 }
 
 * {
@@ -25,140 +24,120 @@
 }
 
 body {
-  background-color: var(--pcb-dark);
-  background-image:
-    radial-gradient(rgba(251, 191, 36, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(18, 92, 64, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 92, 64, 0.2) 1px, transparent 1px);
-  background-size: 24px 24px, 48px 48px, 48px 48px;
-  color: var(--silk-white);
-  font-family: 'IBM Plex Sans', sans-serif;
+  background: var(--bg-stone);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* GOLD PCB EDGE FINGERS */
-.pcb-gold-fingers {
-  height: 7px;
-  background: repeating-linear-gradient(
-    90deg,
-    #d97706 0px,
-    #fbbf24 10px,
-    #021a11 10px,
-    #021a11 16px
-  );
-  border-bottom: 1px solid #92400e;
-}
-
-.pcb-header {
-  background: #032015;
-  border-bottom: 2px solid var(--gold-pad);
-  padding: 10px 22px;
+/* TOP HEADER */
+.top-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-stone);
+  padding: 12px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
-.pcb-brand {
+.brand-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
-.ic-dip-chip {
-  background: #18181b;
-  border: 2px solid #52525b;
-  border-left: 5px dotted var(--gold-bright);
-  border-right: 5px dotted var(--gold-bright);
-  padding: 5px 10px;
-  font-family: 'Space Mono', monospace;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1.1;
-}
-
-.ic-dip-chip span {
-  font-size: 0.78rem;
+.brand-cube {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #1c1917;
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
-  color: var(--gold-bright);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.ic-dip-chip small {
-  font-size: 0.58rem;
-  color: #a1a1aa;
-}
-
-.silkscreen-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  color: var(--gold-bright);
-  letter-spacing: 0.08em;
-}
-
-.pcb-brand h1 {
-  font-family: 'Space Mono', monospace;
+.brand-row h1 {
   font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.pcb-toolbar {
+.meta-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f5f5f4;
+  color: var(--text-sub);
+  border: 1px solid var(--border-stone);
+}
+
+.brand-row p {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.toolbar-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.silkscreen-lbl {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--gold-bright);
-}
-
-.pcb-select {
-  background: #02150e;
-  color: #ffffff;
-  border: 1.5px solid var(--gold-pad);
-  padding: 7px 11px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.74rem;
-  cursor: pointer;
-}
-
-.pcb-btn {
-  background: #063524;
-  color: #ffffff;
-  border: 1.5px solid #228b62;
+.clean-select {
   padding: 7px 12px;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.74rem;
-  font-weight: 700;
+  border-radius: 6px;
+  border: 1px solid var(--border-stone);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-weight: 500;
   cursor: pointer;
 }
 
-.pcb-btn:hover {
-  border-color: var(--gold-bright);
+.btn-clean {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border-stone);
+  background: var(--bg-card);
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
 }
 
-.pcb-btn-gold {
-  background: var(--gold-pad);
-  color: #021a11;
-  border-color: var(--gold-bright);
+.btn-clean:hover {
+  background: #fafaf9;
+  border-color: #d6d3d1;
 }
 
-.pcb-btn-gold:hover {
-  background: var(--gold-bright);
+.btn-primary {
+  background: #1c1917;
+  color: #ffffff;
+  border-color: #1c1917;
 }
 
-/* MAIN WORKBENCH */
-.trainer-workbench {
-  padding: 14px 22px 20px;
-  max-width: 1620px;
+.btn-primary:hover {
+  background: #292524;
+}
+
+/* BENTO WORKBENCH */
+.bento-grid {
+  padding: 16px 24px 20px;
+  max-width: 1580px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -167,75 +146,69 @@ body {
   flex: 1;
 }
 
-.top-bench-grid {
+.bento-top {
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
-  gap: 16px;
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 14px;
 }
 
-@media (max-width: 1120px) {
-  .top-bench-grid {
+@media (max-width: 1100px) {
+  .bento-top {
     grid-template-columns: 1fr;
   }
 }
 
-/* GREEN FR-4 PCB CARD WITH MOUNTING HOLES */
-.pcb-board-card {
-  background: var(--pcb-green);
-  border: 2px solid var(--gold-pad);
+.bento-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-stone);
   border-radius: 10px;
-  padding: 16px 20px;
-  position: relative;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.pcb-hole {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #01110b;
-  border: 3px solid var(--gold-bright);
-}
-
-.hole-tl { top: 8px; left: 8px; }
-.hole-tr { top: 8px; right: 8px; }
-.hole-bl { bottom: 8px; left: 8px; }
-.hole-br { bottom: 8px; right: 8px; }
-
-.pcb-silkscreen-head {
+.card-head {
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--border-stone);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
-  padding: 0 10px 8px;
-  margin-bottom: 8px;
 }
 
-.silk-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #ffffff;
+.card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
 }
 
-.silk-verdict {
-  font-family: 'Space Mono', monospace;
+.card-sub {
   font-size: 0.72rem;
-  font-weight: 700;
+  color: var(--text-muted);
 }
 
-.silk-desc {
+.verdict-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 14px 18px;
+  flex: 1;
+}
+
+.lab-desc {
   font-size: 0.8rem;
-  color: #cbd5e1;
-  padding: 0 10px;
+  color: var(--text-sub);
   margin-bottom: 10px;
 }
 
-.pcb-trace-plane {
-  background: #021c13;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
-  border-radius: 6px;
+.schematic-artboard {
+  background: #fafaf9;
+  background-image: radial-gradient(#d6d3d1 1px, transparent 1px);
+  background-size: 18px 18px;
+  border: 1px solid var(--border-stone);
+  border-radius: 8px;
   padding: 6px;
 }
 
@@ -245,163 +218,70 @@ body {
   display: block;
 }
 
-.pcb-legend-strip {
+.artboard-footer {
   display: flex;
   justify-content: space-between;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
-  color: #cbd5e1;
+  font-size: 0.72rem;
+  color: var(--text-muted);
   margin-top: 8px;
-  padding: 0 6px;
 }
 
-.gold-trace-key {
-  color: var(--gold-bright);
-  font-weight: 700;
+.legend-dot {
+  color: var(--emerald);
+  font-weight: 600;
 }
 
-/* CREAM PAPER TI DATASHEET CARD */
-.datasheet-paper {
-  background: var(--paper-bg);
-  color: var(--paper-ink);
-  border: 2px solid #18181b;
-  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.45);
-  display: flex;
-  flex-direction: column;
-}
-
-.datasheet-header {
-  background: #18181b;
-  color: var(--paper-bg);
-  padding: 10px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.ds-code {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.62rem;
-  color: var(--gold-bright);
-  letter-spacing: 0.08em;
-}
-
-.ds-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.ds-stamp {
-  border: 1.5px solid var(--gold-bright);
-  color: var(--gold-bright);
-  font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 7px;
-}
-
-.datasheet-body {
-  padding: 12px 16px;
-  flex: 1;
-  overflow-x: auto;
-}
-
+/* TRUTH TABLE */
 .truth-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.76rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
 }
 
 .truth-table th {
-  background: #e6dec8;
-  color: #18181b;
-  border: 1px solid #52525b;
-  padding: 6px 8px;
   text-align: center;
-  font-weight: 700;
+  padding: 8px;
+  background: #fafaf9;
+  border-bottom: 1px solid var(--border-stone);
+  color: var(--text-sub);
+  font-weight: 600;
 }
 
 .truth-table td {
-  border: 1px solid #a1a1aa;
-  padding: 6px 8px;
   text-align: center;
-  color: #18181b;
+  padding: 8px;
+  border-bottom: 1px solid #f5f5f4;
+  color: var(--text-main);
 }
 
 .row-pass {
-  background: rgba(16, 185, 129, 0.14);
+  background: rgba(5, 150, 105, 0.05);
 }
 
 .row-fail {
-  background: rgba(244, 63, 94, 0.15);
+  background: rgba(225, 29, 72, 0.05);
 }
 
-/* BOTTOM FULL-WIDTH 4-BIT ALU HARDWARE DECK */
-.alu-trainer-deck {
-  background: #05261a;
-  border: 2px solid #228b62;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.alu-deck-head {
-  background: #031710;
-  border-bottom: 1.5px solid #228b62;
-  padding: 9px 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.alu-part-tag {
-  background: var(--gold-bright);
-  color: #021a11;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  margin-right: 10px;
-}
-
-.alu-deck-title {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.alu-flags-pill {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: var(--gold-bright);
-  background: rgba(251, 191, 36, 0.12);
-  border: 1px solid var(--gold-pad);
-  padding: 3px 10px;
-}
-
-.alu-deck-body {
-  padding: 14px 20px;
+/* BOTTOM HORIZONTAL ALU BAR */
+.alu-horizontal-body {
+  padding: 14px 18px;
   display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 24px;
+  grid-template-columns: 1fr 180px;
+  gap: 20px;
   align-items: center;
 }
 
 @media (max-width: 900px) {
-  .alu-deck-body {
+  .alu-horizontal-body {
     grid-template-columns: 1fr;
   }
 }
 
-.alu-dip-console {
+.alu-controls-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 16px;
   align-items: center;
   justify-content: space-between;
 }
@@ -410,10 +290,10 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #02170f;
-  border: 1px solid #155e42;
+  background: #fafaf9;
+  border: 1px solid var(--border-stone);
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .bit-btns {
@@ -422,66 +302,76 @@ body {
 }
 
 .bit-btn {
-  width: 36px;
-  height: 36px;
-  background: #18181b;
-  border: 2px solid #52525b;
-  color: #a1a1aa;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.9rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid #d6d3d1;
+  background: #ffffff;
+  color: var(--text-sub);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
 }
 
 .bit-btn.high {
-  background: #dc2626;
-  border-color: var(--gold-bright);
+  background: #1c1917;
+  border-color: #1c1917;
   color: #ffffff;
-  box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
 }
 
 .op-row {
   display: flex;
   gap: 6px;
-  flex-wrap: wrap;
 }
 
 .op-btn {
-  padding: 8px 14px;
-  background: #02170f;
-  border: 1.5px solid #228b62;
-  color: #cbd5e1;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.76rem;
-  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border-stone);
+  background: #fafaf9;
+  color: var(--text-sub);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .op-btn.active {
-  background: var(--gold-bright);
-  border-color: var(--gold-bright);
-  color: #021a11;
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #ffffff;
 }
 
-/* RECESSED RED 7-SEGMENT LED WINDOW */
-.led-housing {
-  background: #09090b;
-  border: 2px solid #3f3f46;
+.flags-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--emerald);
+  background: #ecfdf5;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.seven-seg-box {
+  background: #fafaf9;
+  border: 1px solid var(--border-stone);
+  border-radius: 8px;
   padding: 8px 12px;
   text-align: center;
-  border-radius: 6px;
 }
 
-.led-bezel-label {
-  font-family: 'Space Mono', monospace;
+.seg-lbl {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 0.62rem;
-  color: #a1a1aa;
+  color: var(--text-muted);
   margin-bottom: 4px;
 }
 
 #seven-seg-svg {
-  width: 72px;
-  height: 98px;
+  width: 64px;
+  height: 88px;
   margin: 0 auto;
   display: block;
 }
